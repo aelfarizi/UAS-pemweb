@@ -16,14 +16,12 @@
 
     include "koneksi.php";
 
-    //Cek apakah ada kiriman form dari method post
     if (isset($_GET['id_peserta'])) {
         $id_peserta=htmlspecialchars($_GET["id_peserta"]);
 
         $sql="delete from peserta where id_peserta='$id_peserta' ";
         $hasil=mysqli_query($kon,$sql);
 
-        //Kondisi apakah berhasil atau tidak
             if ($hasil) {
                 echo "<script>alert('Data telah berhasil dihapus');window.location='index.php';</script>";
 
