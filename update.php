@@ -9,17 +9,14 @@
 <div class="container">
     <?php
 
-    //Include file koneksi, untuk koneksikan ke database
     include "koneksi.php";
 
-    //Fungsi untuk mencegah inputan karakter yang tidak sesuai
     function input($data) {
         $data = trim($data);
         $data = stripslashes($data);
         $data = htmlspecialchars($data);
         return $data;
     }
-    //Cek apakah ada nilai yang dikirim menggunakan methos GET dengan nama id_peserta
     if (isset($_GET['id_peserta'])) {
         $id_peserta=input($_GET["id_peserta"]);
 
@@ -30,7 +27,6 @@
 
     }
 
-    //Cek apakah ada kiriman form dari method post
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         $id_peserta=htmlspecialchars($_POST["id_peserta"]);
@@ -40,7 +36,6 @@
         $jenkel=input($_POST["jenkel"]);
         $email=input($_POST["email"]);
 
-        //Query update data pada tabel anggota
         $sql="update peserta set
 			nama='$nama',
 			prodi='$prodi',
@@ -49,10 +44,8 @@
 			email='$email'
 			where id_peserta=$id_peserta";
 
-        //Mengeksekusi atau menjalankan query diatas
         $hasil=mysqli_query($kon,$sql);
 
-        //Kondisi apakah berhasil atau tidak dalam mengeksekusi query diatas
         if ($hasil) {
             echo "<script>alert('Data telah berhasil disimpan');window.location='index.php';</script>";
         }
