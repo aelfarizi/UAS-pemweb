@@ -7,17 +7,14 @@
 <body>
 <div class="container">
     <?php
-    //Include file koneksi, untuk koneksikan ke database
     include "koneksi.php";
 
-    //Fungsi untuk mencegah inputan karakter yang tidak sesuai
     function input($data) {
         $data = trim($data);
         $data = stripslashes($data);
         $data = htmlspecialchars($data);
         return $data;
     }
-    //Cek apakah ada kiriman form dari method post
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         $nama=input($_POST["nama"]);
@@ -26,14 +23,11 @@
         $jenkel=input($_POST["jenkel"]);
         $email=input($_POST["email"]);
 
-        //Query input menginput data kedalam tabel anggota
         $sql="insert into peserta (nama,prodi,tgl_lahir,jenkel,email) values
 		('$nama','$prodi','$tgl_lahir','$jenkel','$email')";
 
-        //Mengeksekusi/menjalankan query diatas
         $hasil=mysqli_query($kon,$sql);
 
-        //Kondisi apakah berhasil atau tidak dalam mengeksekusi query diatas
         if ($hasil) {
             echo "<script>alert('Data telah berhasil ditambahkan');window.location='index.php';</script>";
         }
